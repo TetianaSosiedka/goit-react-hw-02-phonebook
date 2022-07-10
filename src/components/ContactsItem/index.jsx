@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 
-export const ContactsItem = ({ name, number }) => {
+export const ContactsItem = ({ contactDetales, onDeleteContact }) => {
   return (
     <li>
-      {name}: {number}
+      {contactDetales.name}: {contactDetales.number}
+      <button type="button" id={contactDetales.id} onClick={onDeleteContact}>
+        Delete
+      </button>
     </li>
   );
 };
 
 ContactsItem.prototype = {
-  name: PropTypes.string,
-  number: PropTypes.string,
+  contactDetales: PropTypes.object,
+  onDeleteContact: PropTypes.func,
 };

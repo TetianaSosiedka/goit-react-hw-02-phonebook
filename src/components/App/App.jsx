@@ -38,6 +38,12 @@ export class App extends Component {
     return visiblyContacts;
   };
 
+  hendleDeleteContact = event => {
+    this.setState({
+      contacts: this.state.contacts.filter(item => item.id !== event.target.id),
+    });
+  };
+
   render() {
     return (
       <div>
@@ -49,7 +55,10 @@ export class App extends Component {
           onChangeFilter={this.handleChangeFilter}
           value={this.state.filter}
         />
-        <ContactList dates={this.handleVisiblyContacts()} />
+        <ContactList
+          dates={this.handleVisiblyContacts()}
+          onDeleteContact={this.hendleDeleteContact}
+        />
       </div>
     );
   }
