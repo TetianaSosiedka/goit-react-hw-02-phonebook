@@ -1,6 +1,8 @@
 import { Component } from 'react';
 
-import { Form } from '../Form';
+import { Container } from './App.styled';
+
+import { NewContactForm } from '../Form';
 import { Filter } from '../Filter';
 import { ContactList } from '../ContactsList';
 
@@ -17,7 +19,7 @@ export class App extends Component {
 
   addDateForm = contact => {
     if (this.state.contacts.find(item => item.name === contact.name)) {
-      alert('такой контакт есть');
+      alert(`${contact.name} is alredy incontacts`);
       return;
     }
 
@@ -46,9 +48,9 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h2>Phonebook</h2>
-        <Form onSubmit={this.addDateForm} />
+        <NewContactForm onSubmit={this.addDateForm} />
 
         <h2>Contacts</h2>
         <Filter
@@ -59,7 +61,7 @@ export class App extends Component {
           dates={this.handleVisiblyContacts()}
           onDeleteContact={this.hendleDeleteContact}
         />
-      </div>
+      </Container>
     );
   }
 }

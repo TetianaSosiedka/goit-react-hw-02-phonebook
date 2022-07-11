@@ -1,7 +1,11 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-export class Form extends Component {
+import { Form } from './styled';
+
+import Button from '@mui/material/Button';
+
+export class NewContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -27,7 +31,7 @@ export class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <label htmlFor={this.idInputName}>
           <span>Name</span>
           <input
@@ -55,8 +59,11 @@ export class Form extends Component {
           />
         </label>
 
-        <button type="submit"> Add contact</button>
-      </form>
+        <Button variant="contained" size="small" type="submit">
+          {' '}
+          Add contact
+        </Button>
+      </Form>
     );
   }
 }

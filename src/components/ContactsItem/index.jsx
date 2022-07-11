@@ -1,13 +1,33 @@
 import PropTypes from 'prop-types';
 
+import { Li } from './styled';
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 export const ContactsItem = ({ contactDetales, onDeleteContact }) => {
   return (
-    <li>
+    <Li>
+      <Avatar
+        sx={{
+          width: [25],
+          height: [25],
+        }}
+        src="/broken-image.jpg"
+      />
       {contactDetales.name}: {contactDetales.number}
-      <button type="button" id={contactDetales.id} onClick={onDeleteContact}>
+      <Button
+        variant="outlined"
+        size="small"
+        type="button"
+        id={contactDetales.id}
+        onClick={onDeleteContact}
+        startIcon={<DeleteIcon />}
+      >
         Delete
-      </button>
-    </li>
+      </Button>
+    </Li>
   );
 };
 
