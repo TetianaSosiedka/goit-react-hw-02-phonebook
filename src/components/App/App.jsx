@@ -6,6 +6,8 @@ import { NewContactForm } from '../Form';
 import { Filter } from '../Filter';
 import { ContactList } from '../ContactsList';
 
+import Notiflix from 'notiflix';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -19,9 +21,20 @@ export class App extends Component {
 
   addDateForm = contact => {
     if (this.state.contacts.find(item => item.name === contact.name)) {
-      alert(`${contact.name} is alredy incontacts`);
+      Notiflix.Report.warning(
+        'Warning',
+        `${contact.name} is alredy incontacts`,
+        'Cancel',
+        function cb() {
+          // callback
+        }
+      );
+      //alert(`${contact.name} is alredy incontacts`);
       return;
     }
+    Notiflix.Report.success('Success', 'Contact added', 'Ok', function cb() {
+      // callback
+    });
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
@@ -43,6 +56,9 @@ export class App extends Component {
   hendleDeleteContact = event => {
     this.setState({
       contacts: this.state.contacts.filter(item => item.id !== event.target.id),
+    });
+    Notiflix.Report.success('Success', 'Contact deleted', 'Ok', function cb() {
+      // callback
     });
   };
 
